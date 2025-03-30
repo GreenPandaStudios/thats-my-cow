@@ -1,0 +1,22 @@
+// Mixins for easy customization
+@mixin font-stack {
+	font-family: "Roboto", sans-serif;
+}
+
+@mixin transition-speed {
+	$transition-speed: 0.3s;
+}
+
+// Mixin for fade-in + slight upward motion
+@mixin fadeInUp {
+	@keyframes fadeInUp {
+		0% {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+}

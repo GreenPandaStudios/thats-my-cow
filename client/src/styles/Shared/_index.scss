@@ -1,0 +1,31 @@
+// The main "ActiveGame" wrapper
+@import "../Variables.scss";
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	@include font-stack;
+	// Retain your radial background if you wish, or adjust it as you like
+	background: radial-gradient(circle, #ececec, #ffffff);
+	min-height: 100vh;
+	width: 100%;
+}
+
+// Basic nav styling (optional)
+nav {
+	background-color: #333;
+	padding: 1rem;
+	text-align: center;
+
+	a {
+		color: #fff;
+		text-decoration: none;
+		margin: 0 1rem;
+		transition: color 1s ease;
+
+		&:hover {
+			color: #ddd;
+		}
+	}
+}
