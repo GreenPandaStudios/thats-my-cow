@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/thats-my-cow/static/css/main.3f9bf06e.css",
+    "main.js": "/thats-my-cow/static/js/main.b37392da.js",
+    "static/js/453.2745b1f7.chunk.js": "/thats-my-cow/static/js/453.2745b1f7.chunk.js",
+    "index.html": "/thats-my-cow/index.html",
+    "main.3f9bf06e.css.map": "/thats-my-cow/static/css/main.3f9bf06e.css.map",
+    "main.b37392da.js.map": "/thats-my-cow/static/js/main.b37392da.js.map",
+    "453.2745b1f7.chunk.js.map": "/thats-my-cow/static/js/453.2745b1f7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3f9bf06e.css",
+    "static/js/main.b37392da.js"
+  ]
+}
