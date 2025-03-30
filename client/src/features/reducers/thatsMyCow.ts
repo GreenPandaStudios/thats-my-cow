@@ -19,7 +19,7 @@ export function thatsMyCow(
 	state.players[cowFor].cows = after;
 
 	// Create a log of what happened
-	var log: string = `${cowFor}'s got a cow, going from ${before} to ${after} cows.`;
+	var log: string = `<span class="name">${cowFor}</span> <span class="actionClaimed">claimed</span> a Cow, going from <span class="number">${before}</span> to <span class="number">${after}</span> cows.`;
 
 	state.log.push(log);
 }

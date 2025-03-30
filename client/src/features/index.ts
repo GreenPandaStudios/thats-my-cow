@@ -1,6 +1,7 @@
 export {
 	isGameRunning,
 	addPlayer,
+	removePlayer,
 	startGame,
 	endGame,
 	resetGame,

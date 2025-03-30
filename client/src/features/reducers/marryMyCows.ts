@@ -19,7 +19,7 @@ export function marryMyCows(
 	state.players[marryCowsFor].cows = after;
 
 	// Create a log of what happened
-	var log: string = `${marryCowsFor}'s Cows were married, going from ${before} to ${after} cows.`;
+	var log: string = `<span class="name">${marryCowsFor}'s</span> Cows were <span class="actionMarried">married</span>, going from <span class="number">${before}</span> to <span class="number">${after}</span> cows.`;
 
 	state.log.push(log);
 }

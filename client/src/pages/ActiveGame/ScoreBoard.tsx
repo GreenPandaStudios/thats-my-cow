@@ -14,7 +14,7 @@ export const ScoreBoard: React.FC = () => {
                 {Object.values(players)
                     .sort((a, b) => b.cows - a.cows)
                     .map((player, i) => (
-                        <li key={i + player.name}>
+                        <li key={player.name}>
                             <PlayerDisplay {...player} />
                         </li>
                     ))}
@@ -27,16 +27,29 @@ export const ScoreBoard: React.FC = () => {
 const PlayerDisplay: React.FC<IPlayer> = (player: IPlayer) => {
     const dispatch = useDispatch();
     const myCowCb = useCallback(() => {
-        dispatch(claimCow({ cowFor: player.name }))
+        dispatch(claimCow({ cowFor: player.name }));
+        animateButton('myCowButton');
     }, []);
 
     const marryCb = useCallback(() => {
-        dispatch(marryCows({ marryCowsFor: player.name }))
+        dispatch(marryCows({ marryCowsFor: player.name }));
+        animateButton('marryButton');
     }, []);
 
     const killCb = useCallback(() => {
-        dispatch(killCows({ killCowsFor: player.name }))
+        dispatch(killCows({ killCowsFor: player.name }));
+        animateButton('killButton');
     }, []);
+
+    const animateButton = (buttonClass: string) => {
+        const button = document.querySelector(`.${buttonClass}`);
+        if (button) {
+            button.classList.add('animate');
+            setTimeout(() => {
+                button.classList.remove('animate');
+            }, 2000); // Animation duration in milliseconds
+        }
+    };
 
 
     return (

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPlayers, addPlayer, startGame } from '../../features';
+import { getPlayers, addPlayer, removePlayer, startGame } from '../../features';
 
 export const PlayerList: React.FC = () => {
     const players = useSelector(getPlayers)
@@ -23,6 +23,11 @@ export const PlayerList: React.FC = () => {
         }
     }, []);
 
+    const onRemovePlayer = useCallback((name: string) => {
+        // Dispatch an action or handle removing the player here
+        dispatch(removePlayer({ name }));
+    }, []);
+
     return (
         <div className="PlayerList">
             <ul>
@@ -32,6 +37,9 @@ export const PlayerList: React.FC = () => {
                             <h2>
                                 {player.name}
                             </h2>
+                            <button className='removePlayerButton' onClick={() => onRemovePlayer(player.name)}>
+                                Remove Player
+                            </button>
                         </li>
                     ))}
                 <form onSubmit={onAddPlayer}>

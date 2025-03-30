@@ -25,13 +25,7 @@ export function killYourCows(
 	state.players[killCowsFor].cows = after;
 
 	// Create a log of what happened
-	var log: string = `${killCowsFor}'s Cows were killed`;
-
-	if (playerKillingTheCows !== undefined) {
-		log += ` by ${playerKillingTheCows}`;
-	}
-
-	log += `, going from ${before} to ${after} cows.`;
+	var log: string = `<span class="name">${killCowsFor}'s</span> Cows were <span class="actionKilled">killed</span>, going from <span class="number">${before}</span> to <span class="number">${after}</span> cows.`;
 
 	state.log.push(log);
 }

@@ -8,7 +8,9 @@ export const Log: React.FC = () => {
 
     return (
         <div className="Log">
-            {log.map((entry, index) => <p key={index}>{entry}</p>)}
+            {log.slice().reverse().map((entry, index) => (
+                <p key={log.length - index} dangerouslySetInnerHTML={{ __html: entry }} />
+            ))}
         </div>
     );
 };

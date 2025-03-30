@@ -55,6 +55,14 @@ const gameSlice = createSlice({
 			const { name } = action.payload;
 			state.players[name] = { name, cows: 2 };
 		},
+		removePlayer(state, action: { payload: { name: string } }) {
+			assert(
+				!state.started,
+				"Cannot remove players after the game has started"
+			);
+			const { name } = action.payload;
+			delete state.players[name];
+		},
 		startGame(state) {
 			assert(!state.started, "Cannot start a game that is already started");
 			state.started = true;
@@ -76,6 +84,7 @@ const gameSlice = createSlice({
 
 export const {
 	addPlayer,
+	removePlayer,
 	startGame,
 	endGame,
 	killCows,

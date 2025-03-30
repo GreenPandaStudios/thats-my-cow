@@ -85,18 +85,127 @@ $negative-color: #ff0000;
 									// Example color-coded buttons
 									&.killButton {
 										background-color: $negative-color;
+										position: relative;
+
+										&::before {
+											content: "💀 KILL! 💀";
+											position: absolute;
+											top: -60px;
+											left: 50%;
+											transform: translateX(-50%) scale(0.8) rotate(-10deg);
+											background-color: $negative-color;
+											color: #fff;
+											padding: 0.5rem 1rem;
+											border-radius: 8px;
+											font-size: 1rem;
+											font-weight: bold;
+											box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+											opacity: 0;
+											transition: all 0.3s ease;
+											animation: wiggle 1s infinite;
+										}
+										&.animate {
+											&::before {
+												opacity: 1;
+												transform: translateX(-50%) scale(1.5) rotate(0deg);
+											}
+										}
+
+										@keyframes wiggle {
+											0%,
+											100% {
+												transform: translateX(-50%) rotate(-10deg)
+													translateY(-20px);
+											}
+											50% {
+												transform: translateX(-50%) rotate(10deg)
+													translateY(-2px);
+											}
+										}
 									}
 
 									&.marryButton {
 										background-color: $secondary-color;
+										position: relative;
+
+										&::before {
+											content: "💍 MARRY! 💍";
+											position: absolute;
+											top: -60px;
+											left: 50%;
+											transform: translateX(-50%) scale(0.8) rotate(-10deg);
+											background-color: $secondary-color;
+											color: #fff;
+											padding: 0.5rem 1rem;
+											border-radius: 8px;
+											font-size: 1rem;
+											font-weight: bold;
+											box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+											opacity: 0;
+											transition: all 0.3s ease;
+											animation: bounce 1s infinite;
+										}
+										&.animate {
+											&::before {
+												opacity: 1;
+												transform: translateX(-50%) scale(1.5) rotate(0deg);
+											}
+										}
+
+										@keyframes bounce {
+											0%,
+											100% {
+												transform: translateX(-50%) translateY(-10px);
+											}
+											50% {
+												transform: translateX(-50%) translateY(-20px);
+											}
+										}
 									}
 
 									&.myCowButton {
 										background-color: $primary-color;
+										position: relative;
+
+										&::before {
+											content: "🐄 MY COW! 🐄";
+											position: absolute;
+											top: -60px;
+											left: 50%;
+											transform: translateX(-50%) scale(0.8) rotate(-10deg);
+											background-color: $primary-color;
+											color: #fff;
+											padding: 0.5rem 1rem;
+											border-radius: 8px;
+											font-size: 1rem;
+											font-weight: bold;
+											box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+											opacity: 0;
+											transition: all 0.3s ease;
+											animation: shake 1s infinite;
+										}
+										&.animate {
+											&::before {
+												opacity: 1;
+												transform: translateX(-50%) scale(1.5) rotate(0deg);
+											}
+										}
+
+										@keyframes shake {
+											0%,
+											100% {
+												transform: translateX(-50%) rotate(-10deg);
+											}
+											50% {
+												transform: translateX(-50%) rotate(10deg);
+											}
+										}
 									}
 								}
 							}
+							padding-bottom: 1rem;
 						}
+						border-bottom: 1px solid #ddd;
 					}
 				}
 			}
@@ -110,12 +219,55 @@ $negative-color: #ff0000;
 			padding: 1rem;
 			max-width: 400px;
 			animation: fadeInUp 1s ease forwards;
-
 			.Log {
+				max-height: 300px;
+				overflow-y: auto;
+				padding-right: 0.5rem;
+
 				p {
 					margin: 0.5rem 0;
 					font-size: 0.9rem;
 					color: #555;
+					animation: floatIn 0.8s ease forwards;
+					.name {
+						font-weight: 600;
+						margin-bottom: 0.5rem;
+						background-color: #555;
+						color: #fff;
+						border-radius: 0.25rem;
+						padding: 0;
+						padding-left: 0.25rem;
+						padding-right: 0.25rem;
+					}
+
+					.actionKilled {
+						color: $negative-color;
+					}
+
+					.actionMarried {
+						color: $secondary-color;
+					}
+
+					.actionClaimed {
+						color: $primary-color;
+					}
+
+					.number {
+						font-weight: 600;
+					}
+				}
+
+				@keyframes floatIn {
+					0% {
+						opacity: 0;
+						height: 0;
+						transform: translateY(-10px);
+					}
+					100% {
+						opacity: 1;
+						height: 2rem;
+						transform: translateY(0);
+					}
 				}
 			}
 		}

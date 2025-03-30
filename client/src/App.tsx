@@ -5,7 +5,7 @@ import { Home, RuleBook } from "./pages";
 
 function App() {
   return (
-    <Router>
+    <Router basename='thats-my-cow'>
       <nav>
         <Link to="/">Home</Link> | <Link to="/rulebook">Rule Book</Link>
       </nav>

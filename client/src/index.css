@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .ActiveGame {
   display: flex;
   flex-direction: column;
@@ -42,11 +43,13 @@
 }
 .ActiveGame .contentContainer .scoreBoardCotnainer .ScoreBoard ol li {
   margin: 1rem 0;
+  border-bottom: 1px solid #ddd;
 }
 .ActiveGame .contentContainer .scoreBoardCotnainer .ScoreBoard ol li .PlayerDisplay {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 1rem;
 }
 .ActiveGame .contentContainer .scoreBoardCotnainer .ScoreBoard ol li .PlayerDisplay .textContainer {
   text-align: center;
@@ -77,12 +80,102 @@
 }
 .ActiveGame .contentContainer .scoreBoardCotnainer .ScoreBoard ol li .PlayerDisplay .buttonContainer button.killButton {
   background-color: #ff0000;
+  position: relative;
+}
+.ActiveGame .contentContainer .scoreBoardCotnainer .ScoreBoard ol li .PlayerDisplay .buttonContainer button.killButton::before {
+  content: "💀 KILL! 💀";
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.8) rotate(-10deg);
+  background-color: #ff0000;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: all 0.3s ease;
+  animation: wiggle 1s infinite;
+}
+.ActiveGame .contentContainer .scoreBoardCotnainer .ScoreBoard ol li .PlayerDisplay .buttonContainer button.killButton.animate::before {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.5) rotate(0deg);
+}
+@keyframes wiggle {
+  0%, 100% {
+    transform: translateX(-50%) rotate(-10deg) translateY(-20px);
+  }
+  50% {
+    transform: translateX(-50%) rotate(10deg) translateY(-2px);
+  }
 }
 .ActiveGame .contentContainer .scoreBoardCotnainer .ScoreBoard ol li .PlayerDisplay .buttonContainer button.marryButton {
   background-color: #28a745;
+  position: relative;
+}
+.ActiveGame .contentContainer .scoreBoardCotnainer .ScoreBoard ol li .PlayerDisplay .buttonContainer button.marryButton::before {
+  content: "💍 MARRY! 💍";
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.8) rotate(-10deg);
+  background-color: #28a745;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: all 0.3s ease;
+  animation: bounce 1s infinite;
+}
+.ActiveGame .contentContainer .scoreBoardCotnainer .ScoreBoard ol li .PlayerDisplay .buttonContainer button.marryButton.animate::before {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.5) rotate(0deg);
+}
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-20px);
+  }
 }
 .ActiveGame .contentContainer .scoreBoardCotnainer .ScoreBoard ol li .PlayerDisplay .buttonContainer button.myCowButton {
   background-color: #007bff;
+  position: relative;
+}
+.ActiveGame .contentContainer .scoreBoardCotnainer .ScoreBoard ol li .PlayerDisplay .buttonContainer button.myCowButton::before {
+  content: "🐄 MY COW! 🐄";
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.8) rotate(-10deg);
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: all 0.3s ease;
+  animation: shake 1s infinite;
+}
+.ActiveGame .contentContainer .scoreBoardCotnainer .ScoreBoard ol li .PlayerDisplay .buttonContainer button.myCowButton.animate::before {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.5) rotate(0deg);
+}
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(-50%) rotate(-10deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(10deg);
+  }
 }
 .ActiveGame .contentContainer .logContainer {
   background-color: #fff;
@@ -92,10 +185,50 @@
   max-width: 400px;
   animation: fadeInUp 1s ease forwards;
 }
+.ActiveGame .contentContainer .logContainer .Log {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
 .ActiveGame .contentContainer .logContainer .Log p {
   margin: 0.5rem 0;
   font-size: 0.9rem;
   color: #555;
+  animation: floatIn 0.8s ease forwards;
+}
+.ActiveGame .contentContainer .logContainer .Log p .name {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  background-color: #555;
+  color: #fff;
+  border-radius: 0.25rem;
+  padding: 0;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+.ActiveGame .contentContainer .logContainer .Log p .actionKilled {
+  color: #ff0000;
+}
+.ActiveGame .contentContainer .logContainer .Log p .actionMarried {
+  color: #28a745;
+}
+.ActiveGame .contentContainer .logContainer .Log p .actionClaimed {
+  color: #007bff;
+}
+.ActiveGame .contentContainer .logContainer .Log p .number {
+  font-weight: 600;
+}
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    height: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    height: 2rem;
+    transform: translateY(0);
+  }
 }
 .ActiveGame .endGameButton {
   margin-top: 2rem;
@@ -173,6 +306,21 @@ nav a:hover {
   margin: 0;
   font-size: 1.5rem;
   color: #333;
+}
+.NewGame .PlayerList ul li button.removePlayerButton {
+  background-color: white;
+  color: red;
+  border: 1px solid red;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.NewGame .PlayerList ul li button.removePlayerButton:hover {
+  transform: translateY(-2px);
 }
 .NewGame .PlayerList form {
   display: flex;
