@@ -10,7 +10,7 @@ export const ActiveGame: React.FC = () => {
     const endGameCb = useCallback(() => {
         dispatch(endGame())
         dispatch(resetGame());
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="ActiveGame">

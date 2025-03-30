@@ -17,7 +17,7 @@ export function killYourCows(
 			state.players[action.payload.playerKillingTheCows],
 		"Player killing the cows does not exist"
 	);
-	const { killCowsFor, playerKillingTheCows } = action.payload;
+	const { killCowsFor } = action.payload;
 
 	const before: number = state.players[killCowsFor].cows;
 	const after: number = Math.round(before / 2);

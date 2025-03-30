@@ -10,7 +10,7 @@ export const PlayerList: React.FC = () => {
     const startGameCb = useCallback(() => {
         dispatch(startGame());
         // Add logic to start the game here
-    }, []);
+    }, [dispatch]);
 
     const onAddPlayer = useCallback((event: React.FormEvent) => {
         event.preventDefault();
@@ -21,12 +21,12 @@ export const PlayerList: React.FC = () => {
             dispatch(addPlayer({ name: input.value }));
             input.value = ''; // Clear the input field
         }
-    }, []);
+    }, [dispatch]);
 
     const onRemovePlayer = useCallback((name: string) => {
         // Dispatch an action or handle removing the player here
         dispatch(removePlayer({ name }));
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="PlayerList">

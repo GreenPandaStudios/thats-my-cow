@@ -29,17 +29,17 @@ const PlayerDisplay: React.FC<IPlayer> = (player: IPlayer) => {
     const myCowCb = useCallback(() => {
         dispatch(claimCow({ cowFor: player.name }));
         animateButton('myCowButton');
-    }, []);
+    }, [dispatch, player.name]);
 
     const marryCb = useCallback(() => {
         dispatch(marryCows({ marryCowsFor: player.name }));
         animateButton('marryButton');
-    }, []);
+    }, [dispatch, player.name]);
 
     const killCb = useCallback(() => {
         dispatch(killCows({ killCowsFor: player.name }));
         animateButton('killButton');
-    }, []);
+    }, [dispatch, player.name]);
 
     const animateButton = (buttonClass: string) => {
         const button = document.querySelector(`.${buttonClass}`);
