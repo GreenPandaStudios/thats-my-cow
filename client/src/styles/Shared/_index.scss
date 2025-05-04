@@ -10,6 +10,11 @@ body {
 	background: radial-gradient(circle, #ececec, #ffffff);
 	min-height: 100vh;
 	width: 100%;
+
+	background: url("../public/background.png") no-repeat center center;
+	backdrop-filter: blur(15px);
+	-webkit-backdrop-filter: blur(15px); /* For Safari */
+	background-size: cover;
 }
 
 // Basic nav styling (optional)

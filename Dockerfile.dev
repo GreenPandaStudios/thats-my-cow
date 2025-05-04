@@ -1,0 +1,24 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS base
+WORKDIR /app
+
+# Install Node.js for client development if needed
+RUN apt-get update && \
+    apt-get install -y nodejs npm && \
+    npm install -g n && \
+    n stable
+
+# Copy csproj and restore dependencies
+COPY ["ThatsMyCowAPI.csproj", "./"]
+RUN dotnet restore
+
+# Copy everything else
+COPY . .
+
+# Set environment to Development
+ENV ASPNETCORE_ENVIRONMENT=Development
+ENV DOTNET_USE_POLLING_FILE_WATCHER=1
+
+EXPOSE 5000
+EXPOSE 5001
+
+ENTRYPOINT ["dotnet", "watch", "run", "--urls", "http://0.0.0.0:5000;https://0.0.0.0:5001"]

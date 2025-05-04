@@ -1,294 +1,283 @@
-// The main "ActiveGame" wrapper
-@import "./Variables.scss";
-
-$transition-speed: 0.3s;
-$primary-color: #007bff;
-$secondary-color: #28a745;
-$negative-color: #ff0000;
-
 .ActiveGame {
-	// Simple fade-in + slight upward motion
-	@include fadeInUp;
-
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	margin-top: 2rem;
-	animation: fadeInUp 0.6s ease forwards;
+	width: 100%;
+	min-height: 80vh; /* Use viewport height for full screen */
+	align-items: center; /* Centers horizontally */
+	justify-content: center; /* Centers vertically */
+	position: relative; /* Establishes positioning context */
+	animation: fadeIn 0.5s ease-in-out; /* Fade in the game container */
 
-	.contentContainer {
+	.ScoreBoard {
 		display: flex;
 		flex-direction: row;
-		align-items: flex-start;
-		justify-content: center;
-		gap: 2rem;
+		gap: 0.5rem;
+		animation: slideDown 0.6s ease-out; /* Slide down animation for scoreboard */
+	}
+}
 
-		@media (max-width: 600px) {
-			flex-direction: column;
-			align-items: center;
+.PlayerDisplay {
+	background-color: #56a9e0; // Blue background
+	padding: 0.5rem 1rem;
+	max-width: 9rem;
+	border-radius: 1rem;
+	margin-bottom: 15px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+
+	&:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+	}
+
+	.textContainer {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		.playerName {
+			flex: 1 1 auto;
+			margin: auto;
+			font-size: 2rem;
+			text-align: center;
+			text-transform: uppercase;
+			margin-top: 0;
 		}
-
-		// Scoreboard container
-		.scoreBoardCotnainer {
-			background-color: #fafafa;
-			border-radius: 8px;
-			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-			padding: 1rem;
-			animation: fadeInUp 0.8s ease forwards;
-
-			.ScoreBoard {
-				ol {
-					list-style: none;
-					padding: 0;
-					margin: 0;
-
-					li {
-						margin: 1rem 0;
-
-						.PlayerDisplay {
-							display: flex;
-							flex-direction: column;
-							align-items: center;
-
-							.textContainer {
-								text-align: center;
-
-								h2 {
-									margin: 0;
-									font-size: 1.5rem;
-								}
-
-								p {
-									margin: 0.5rem 0;
-									font-size: 1.2rem;
-								}
-							}
-
-							.buttonContainer {
-								display: flex;
-								gap: 0.5rem;
-								margin-top: 1rem;
-
-								button {
-									padding: 0.5rem 1rem;
-									border: none;
-									border-radius: 4px;
-									cursor: pointer;
-									color: #fff;
-									transition: background-color $transition-speed ease,
-										transform $transition-speed ease;
-
-									&:hover {
-										transform: translateY(-2px);
-									}
-
-									// Example color-coded buttons
-									&.killButton {
-										background-color: $negative-color;
-										position: relative;
-
-										&::before {
-											content: "💀 KILL! 💀";
-											position: absolute;
-											top: -60px;
-											left: 50%;
-											transform: translateX(-50%) scale(0.8) rotate(-10deg);
-											background-color: $negative-color;
-											color: #fff;
-											padding: 0.5rem 1rem;
-											border-radius: 8px;
-											font-size: 1rem;
-											font-weight: bold;
-											box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-											opacity: 0;
-											transition: all 0.3s ease;
-											animation: wiggle 1s infinite;
-										}
-										&.animate {
-											&::before {
-												opacity: 1;
-												transform: translateX(-50%) scale(1.5) rotate(0deg);
-											}
-										}
-
-										@keyframes wiggle {
-											0%,
-											100% {
-												transform: translateX(-50%) rotate(-10deg)
-													translateY(-20px);
-											}
-											50% {
-												transform: translateX(-50%) rotate(10deg)
-													translateY(-2px);
-											}
-										}
-									}
-
-									&.marryButton {
-										background-color: $secondary-color;
-										position: relative;
-
-										&::before {
-											content: "💍 MARRY! 💍";
-											position: absolute;
-											top: -60px;
-											left: 50%;
-											transform: translateX(-50%) scale(0.8) rotate(-10deg);
-											background-color: $secondary-color;
-											color: #fff;
-											padding: 0.5rem 1rem;
-											border-radius: 8px;
-											font-size: 1rem;
-											font-weight: bold;
-											box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-											opacity: 0;
-											transition: all 0.3s ease;
-											animation: bounce 1s infinite;
-										}
-										&.animate {
-											&::before {
-												opacity: 1;
-												transform: translateX(-50%) scale(1.5) rotate(0deg);
-											}
-										}
-
-										@keyframes bounce {
-											0%,
-											100% {
-												transform: translateX(-50%) translateY(-10px);
-											}
-											50% {
-												transform: translateX(-50%) translateY(-20px);
-											}
-										}
-									}
-
-									&.myCowButton {
-										background-color: $primary-color;
-										position: relative;
-
-										&::before {
-											content: "🐄 MY COW! 🐄";
-											position: absolute;
-											top: -60px;
-											left: 50%;
-											transform: translateX(-50%) scale(0.8) rotate(-10deg);
-											background-color: $primary-color;
-											color: #fff;
-											padding: 0.5rem 1rem;
-											border-radius: 8px;
-											font-size: 1rem;
-											font-weight: bold;
-											box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-											opacity: 0;
-											transition: all 0.3s ease;
-											animation: shake 1s infinite;
-										}
-										&.animate {
-											&::before {
-												opacity: 1;
-												transform: translateX(-50%) scale(1.5) rotate(0deg);
-											}
-										}
-
-										@keyframes shake {
-											0%,
-											100% {
-												transform: translateX(-50%) rotate(-10deg);
-											}
-											50% {
-												transform: translateX(-50%) rotate(10deg);
-											}
-										}
-									}
-								}
-							}
-							padding-bottom: 1rem;
-						}
-						border-bottom: 1px solid #ddd;
-					}
-				}
+		text-align: center;
+		.score {
+			position: relative;
+			top: -2rem;
+			right: 0rem;
+			text-align: left;
+			font-size: 2.5rem;
+			font-weight: bold;
+			color: white;
+			&.scoreChanged {
+				animation: scoreChange 0.5s ease-out, pulse 0.5s infinite alternate;
 			}
 		}
 
-		// Log container
-		.logContainer {
-			background-color: #fff;
-			border-radius: 8px;
-			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-			padding: 1rem;
-			max-width: 400px;
-			animation: fadeInUp 1s ease forwards;
-			.Log {
-				max-height: 300px;
-				overflow-y: auto;
-				padding-right: 0.5rem;
+		@keyframes scoreChange {
+			0% {
+				transform: scale(1) rotate(0deg) translateY(0);
+				color: white;
+			}
+			10% {
+				transform: scale(1.5) rotate(-12deg) translateY(-15px);
+			}
+			20% {
+				transform: scale(1.8) rotate(8deg) translateX(10px);
+				color: #ffcc00; /* Just one accent color */
+			}
+			30% {
+				transform: scale(1.6) rotate(-20deg) translateY(5px) translateX(-15px);
+			}
+			40% {
+				transform: scale(1.9) rotate(15deg) translateY(-20px);
+			}
+			50% {
+				transform: scale(1.7) rotate(-10deg) translateX(20px);
+				color: white;
+			}
+			60% {
+				transform: scale(1.8) rotate(25deg) translateY(10px) translateX(-10px);
+			}
+			70% {
+				transform: scale(1.5) rotate(-18deg) translateY(-15px) translateX(5px);
+			}
+			80% {
+				transform: scale(1.7) rotate(12deg) translateX(-20px);
+				color: #ffcc00;
+			}
+			90% {
+				transform: scale(1.4) rotate(-5deg) translateY(8px);
+			}
+			100% {
+				transform: scale(1) rotate(0deg) translateY(0);
+				color: white;
+			}
+		}
+	}
+	.buttonContainer {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
 
-				p {
-					margin: 0.5rem 0;
-					font-size: 0.9rem;
-					color: #555;
-					animation: floatIn 0.8s ease forwards;
-					.name {
-						font-weight: 600;
-						margin-bottom: 0.5rem;
-						background-color: #555;
-						color: #fff;
-						border-radius: 0.25rem;
-						padding: 0;
-						padding-left: 0.25rem;
-						padding-right: 0.25rem;
-					}
+		button {
+			flex: 0 0 auto;
+			text-align: center;
+			width: 4rem; /* Fixed width for all buttons */
+			height: 4rem; /* Make height equal to width for square buttons */
+			margin: 2px; /* Add some spacing between buttons */
+			font-size: 2rem; /* Adjust font size as needed */
+			text-justify: center;
+			border: none;
+			border-radius: 1rem;
+			transition: all 0.2s ease-in-out;
 
-					.actionKilled {
-						color: $negative-color;
-					}
+			&:hover {
+				transform: scale(1.1);
+				box-shadow: 0 0 10px rgba(86, 169, 224, 0.6);
+			}
 
-					.actionMarried {
-						color: $secondary-color;
-					}
-
-					.actionClaimed {
-						color: $primary-color;
-					}
-
-					.number {
-						font-weight: 600;
-					}
-				}
-
-				@keyframes floatIn {
-					0% {
-						opacity: 0;
-						height: 0;
-						transform: translateY(-10px);
-					}
-					100% {
-						opacity: 1;
-						height: 2rem;
-						transform: translateY(0);
-					}
-				}
+			&:active {
+				transform: scale(0.95);
 			}
 		}
 	}
 
-	// End game button
-	.endGameButton {
-		margin-top: 2rem;
-		background-color: #ff0000;
-		color: #ffffff;
-		font-size: 1.5rem;
-		padding: 0.5rem 1.5rem;
-		border: none;
-		border-radius: 5px;
-		cursor: pointer;
-		transition: background-color $transition-speed ease,
-			transform $transition-speed ease;
+	/* Button animation classes */
+	.myCowButton.animate {
+		animation: cowJump 2s ease-in-out;
+		background-color: #ffcc00;
+	}
 
-		&:hover {
-			background-color: #ff4d4f;
-			transform: translateY(-2px);
+	.marryButton.animate {
+		animation: heartBeat 2s ease-in-out;
+		background-color: #ff6b8b;
+	}
+
+	.killButton.animate {
+		animation: shake 2s ease-in-out;
+		background-color: #ff4136;
+	}
+
+	/* Animation keyframes */
+	@keyframes cowJump {
+		0% {
+			transform: scale(1);
 		}
+		20% {
+			transform: scale(1.4) translateY(-20px) rotate(5deg);
+		}
+		40% {
+			transform: scale(1.2) translateY(-10px) rotate(15deg);
+		}
+		60% {
+			transform: scale(1.3) translateY(-5px) rotate(-15deg);
+		}
+		80% {
+			transform: scale(1.1) translateY(-12px) rotate(5deg);
+		}
+		100% {
+			transform: scale(1) rotate(0);
+		}
+	}
+
+	@keyframes heartBeat {
+		0% {
+			transform: scale(1);
+		}
+		14% {
+			transform: scale(1.5) rotate(5deg);
+		}
+		28% {
+			transform: scale(0.9) rotate(-5deg);
+		}
+		42% {
+			transform: scale(1.6) rotate(8deg);
+		}
+		56% {
+			transform: scale(0.8) rotate(-8deg);
+		}
+		70% {
+			transform: scale(1.4) rotate(5deg);
+		}
+		85% {
+			transform: scale(0.9) rotate(-3deg);
+		}
+		100% {
+			transform: scale(1) rotate(0);
+		}
+	}
+
+	@keyframes shake {
+		0% {
+			transform: translateX(0) rotate(0);
+		}
+		10% {
+			transform: translateX(-10px) rotate(-10deg);
+		}
+		20% {
+			transform: translateX(12px) rotate(12deg);
+		}
+		30% {
+			transform: translateX(-14px) rotate(-8deg);
+		}
+		40% {
+			transform: translateX(10px) rotate(10deg);
+		}
+		50% {
+			transform: translateX(-8px) rotate(-12deg);
+		}
+		60% {
+			transform: translateX(14px) rotate(7deg);
+		}
+		70% {
+			transform: translateX(-12px) rotate(-10deg);
+		}
+		80% {
+			transform: translateX(8px) rotate(12deg);
+		}
+		90% {
+			transform: translateX(-6px) rotate(-6deg);
+		}
+		100% {
+			transform: translateX(0) rotate(0);
+		}
+	}
+}
+
+.Log {
+	display: none;
+}
+
+.endGameButton {
+	background-color: #ff4136; // Red background
+	color: white;
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: 1rem;
+	cursor: pointer;
+	font-size: 1.2rem;
+	transition: background-color 0.3s ease, transform 0.3s ease;
+
+	&:hover {
+		background-color: darken(#ff4136, 10%);
+		transform: translateY(-2px);
+	}
+
+	&:active {
+		transform: translateY(0);
+	}
+}
+
+/* Define animations */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slideDown {
+	from {
+		transform: translateY(-20px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes pulse {
+	from {
+		transform: scale(1);
+	}
+	to {
+		transform: scale(1.5);
 	}
 }

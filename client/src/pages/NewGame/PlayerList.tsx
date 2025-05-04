@@ -30,7 +30,13 @@ export const PlayerList: React.FC = () => {
 
     return (
         <div className="PlayerList">
-            <ul>
+            <div className='addPlayerContainer'>
+                <form className="addPlayerForm" onSubmit={onAddPlayer}>
+                    <input type="text" placeholder="Enter player's name" />
+                    <button type="submit">Add New Player</button>
+                </form>
+            </div>
+            <ul className='playerList'>
                 {Object.values(players)
                     .map((player, i) => (
                         <li key={i}>
@@ -42,12 +48,9 @@ export const PlayerList: React.FC = () => {
                             </button>
                         </li>
                     ))}
-                <form onSubmit={onAddPlayer}>
-                    <input type="text" placeholder="Enter player's name" />
-                    <button type="submit">Add New Player</button>
-                </form>
+
             </ul>
-            <button onClick={startGameCb}>
+            <button onClick={startGameCb} disabled={Object.keys(players).length < 2} className="startGameButton">
                 Start Game
             </button>
         </div>

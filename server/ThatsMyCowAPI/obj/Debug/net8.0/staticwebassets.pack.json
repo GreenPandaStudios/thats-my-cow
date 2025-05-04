@@ -1,0 +1,81 @@
+{
+  "Files": [
+    {
+      "Id": "/home/august/repos/thats-my-cow/server/ThatsMyCowAPI/wwwroot/Rules.md",
+      "PackagePath": "staticwebassets/Rules.md"
+    },
+    {
+      "Id": "/home/august/repos/thats-my-cow/server/ThatsMyCowAPI/wwwroot/asset-manifest.json",
+      "PackagePath": "staticwebassets/asset-manifest.json"
+    },
+    {
+      "Id": "/home/august/repos/thats-my-cow/server/ThatsMyCowAPI/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/home/august/repos/thats-my-cow/server/ThatsMyCowAPI/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "/home/august/repos/thats-my-cow/server/ThatsMyCowAPI/wwwroot/logo192.png",
+      "PackagePath": "staticwebassets/logo192.png"
+    },
+    {
+      "Id": "/home/august/repos/thats-my-cow/server/ThatsMyCowAPI/wwwroot/logo512.png",
+      "PackagePath": "staticwebassets/logo512.png"
+    },
+    {
+      "Id": "/home/august/repos/thats-my-cow/server/ThatsMyCowAPI/wwwroot/manifest.json",
+      "PackagePath": "staticwebassets/manifest.json"
+    },
+    {
+      "Id": "/home/august/repos/thats-my-cow/server/ThatsMyCowAPI/wwwroot/robots.txt",
+      "PackagePath": "staticwebassets/robots.txt"
+    },
+    {
+      "Id": "/home/august/repos/thats-my-cow/server/ThatsMyCowAPI/wwwroot/static/css/main.e397f04a.css",
+      "PackagePath": "staticwebassets/static/css/main.e397f04a.css"
+    },
+    {
+      "Id": "/home/august/repos/thats-my-cow/server/ThatsMyCowAPI/wwwroot/static/css/main.e397f04a.css.map",
+      "PackagePath": "staticwebassets/static/css/main.e397f04a.css.map"
+    },
+    {
+      "Id": "/home/august/repos/thats-my-cow/server/ThatsMyCowAPI/wwwroot/static/js/453.2745b1f7.chunk.js",
+      "PackagePath": "staticwebassets/static/js/453.2745b1f7.chunk.js"
+    },
+    {
+      "Id": "/home/august/repos/thats-my-cow/server/ThatsMyCowAPI/wwwroot/static/js/453.2745b1f7.chunk.js.map",
+      "PackagePath": "staticwebassets/static/js/453.2745b1f7.chunk.js.map"
+    },
+    {
+      "Id": "/home/august/repos/thats-my-cow/server/ThatsMyCowAPI/wwwroot/static/js/main.5c434081.js",
+      "PackagePath": "staticwebassets/static/js/main.5c434081.js"
+    },
+    {
+      "Id": "/home/august/repos/thats-my-cow/server/ThatsMyCowAPI/wwwroot/static/js/main.5c434081.js.LICENSE.txt",
+      "PackagePath": "staticwebassets/static/js/main.5c434081.js.LICENSE.txt"
+    },
+    {
+      "Id": "/home/august/repos/thats-my-cow/server/ThatsMyCowAPI/wwwroot/static/js/main.5c434081.js.map",
+      "PackagePath": "staticwebassets/static/js/main.5c434081.js.map"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.ThatsMyCowAPI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.ThatsMyCowAPI.props",
+      "PackagePath": "build\\ThatsMyCowAPI.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.ThatsMyCowAPI.props",
+      "PackagePath": "buildMultiTargeting\\ThatsMyCowAPI.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.ThatsMyCowAPI.props",
+      "PackagePath": "buildTransitive\\ThatsMyCowAPI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

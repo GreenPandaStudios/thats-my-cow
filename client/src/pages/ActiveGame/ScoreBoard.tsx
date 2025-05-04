@@ -10,15 +10,10 @@ export const ScoreBoard: React.FC = () => {
 
     return (
         <div className="ScoreBoard">
-            <ol>
-                {Object.values(players)
-                    .sort((a, b) => b.cows - a.cows)
-                    .map((player, i) => (
-                        <li key={player.name}>
-                            <PlayerDisplay {...player} />
-                        </li>
-                    ))}
-            </ol>
+            {Object.values(players)
+                .map((player, i) => (
+                    <PlayerDisplay {...player} key={i} />
+                ))}
         </div>
     );
 };
@@ -41,36 +36,71 @@ const PlayerDisplay: React.FC<IPlayer> = (player: IPlayer) => {
         animateButton('killButton');
     }, [dispatch, player.name]);
 
-    const animateButton = (buttonClass: string) => {
-        const button = document.querySelector(`.${buttonClass}`);
-        if (button) {
-            button.classList.add('animate');
+    const myCowButtonRef = React.useRef<HTMLButtonElement>(null);
+    const marryButtonRef = React.useRef<HTMLButtonElement>(null);
+    const killButtonRef = React.useRef<HTMLButtonElement>(null);
+    const scoreRef = React.useRef<HTMLSpanElement>(null);
+    const animateButton = (buttonType: 'myCowButton' | 'marryButton' | 'killButton') => {
+        const buttonRefMap = {
+            myCowButton: myCowButtonRef,
+            marryButton: marryButtonRef,
+            killButton: killButtonRef
+        };
+
+        const buttonElement = buttonRefMap[buttonType].current;
+        if (buttonElement) {
+            buttonElement.classList.add('animate');
             setTimeout(() => {
-                button.classList.remove('animate');
+                buttonElement.classList.remove('animate');
+            }, 2000); // Animation duration in milliseconds
+        }
+
+        if (scoreRef.current) {
+            scoreRef.current.classList.add('scoreChanged');
+            setTimeout(() => {
+                scoreRef.current?.classList.remove('scoreChanged');
             }, 2000); // Animation duration in milliseconds
         }
     };
 
 
     return (
-        <div className="PlayerDisplay">
+        <div className="PlayerDisplay" key={player.name}>
             <div className="textContainer">
-                <h2>
+                <h2 className="playerName">
                     {player.name}
                 </h2>
-                <p>
-                    Cows: {player.cows}
-                </p>
+                <span className="score" ref={scoreRef}>
+                    {player.cows}
+                </span>
             </div>
             <div className="buttonContainer">
-                <button onClick={killCb} className="killButton">
-                    Kill {player.name}'s Cows
+                <button
+                    ref={myCowButtonRef}
+                    onClick={myCowCb}
+                    className="myCowButton"
+                    aria-label={`That's ${player.name}'s Cow`}
+                    title={`That's ${player.name}'s Cow`}
+                >
+                    🐄
                 </button>
-                <button onClick={marryCb} className="marryButton">
-                    Marry {player.name}'s Cows
+                <button
+                    ref={marryButtonRef}
+                    onClick={marryCb}
+                    className="marryButton"
+                    aria-label={`Marry ${player.name}'s Cows`}
+                    title={`Marry ${player.name}'s Cows`}
+                >
+                    💍
                 </button>
-                <button onClick={myCowCb} className="myCowButton">
-                    That's {player.name}'s Cow!!
+                <button
+                    ref={killButtonRef}
+                    onClick={killCb}
+                    className="killButton"
+                    aria-label={`Kill ${player.name}'s Cows`}
+                    title={`Kill ${player.name}'s Cows`}
+                >
+                    🔪
                 </button>
             </div>
         </div>

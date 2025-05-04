@@ -7,6 +7,9 @@ function App() {
   return (
     <Router>
       <nav>
+        <div className='title'>
+          <span>the</span> Cow Game
+        </div>
         <Link to="/">Home</Link> | <Link to="/rulebook">Rule Book</Link>
       </nav>
       <Routes>
