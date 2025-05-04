@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 80vh; /* Use viewport height for full screen */
   align-items: center; /* Centers horizontally */
   justify-content: center; /* Centers vertically */
   position: relative; /* Establishes positioning context */
@@ -10,9 +9,14 @@
 }
 .ActiveGame .ScoreBoard {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
+  width: 100%;
   animation: slideDown 0.6s ease-out; /* Slide down animation for scoreboard */
+}
+.ActiveGame .ScoreBoard > * {
+  flex: 0 1 calc(50% - 0.5rem); /* Two items per row with gap consideration */
 }
 
 .PlayerDisplay {
@@ -39,10 +43,13 @@
 .PlayerDisplay .textContainer .playerName {
   flex: 1 1 auto;
   margin: auto;
-  font-size: 2rem;
+  font-size: 1.4rem; /* Reduced from 2rem */
   text-align: center;
   text-transform: uppercase;
   margin-top: 0;
+  white-space: nowrap; /* Prevent wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis for long names */
 }
 .PlayerDisplay .textContainer .score {
   position: relative;
@@ -270,7 +277,7 @@ body {
   padding: 0;
   font-family: "Rockwell", "Playfair Display", "Georgia", serif;
   background: radial-gradient(circle, #ececec, #ffffff);
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   background: url("../public/background.png") no-repeat center center;
   backdrop-filter: blur(15px);
