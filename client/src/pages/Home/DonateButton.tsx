@@ -8,7 +8,7 @@ const DonateButton: React.FC = () => {
     };
 
     return (
-        <a aria-description='Donate' className={isVisible ? "donate-button" : "donate-button invisible"} onClick={handleDonateClick} href='https://donate.stripe.com/14kdR05yJgqU1ji5kk'>
+        <a className={isVisible ? "donate-button" : "donate-button invisible"} onClick={handleDonateClick} href='https://donate.stripe.com/14kdR05yJgqU1ji5kk'>
             <img src="/Moony.png" alt="Donate Moony" />
         </a>
     );
