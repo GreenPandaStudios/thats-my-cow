@@ -10,7 +10,7 @@ function App() {
         <div className='title'>
           <span>the</span> Cow Game
         </div>
-        <Link to="/">Home</Link> | <Link to="/rulebook">Rule Book</Link>
+        <Link to="/">Play</Link> | <Link to="/rulebook">Rule Book</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />

@@ -2,8 +2,6 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPlayers, IPlayer, killCows, marryCows, claimCow } from '../../features';
 
-
-
 export const ScoreBoard: React.FC = () => {
 
     const players = useSelector(getPlayers)
@@ -82,7 +80,7 @@ const PlayerDisplay: React.FC<IPlayer> = (player: IPlayer) => {
                     aria-label={`That's ${player.name}'s Cow`}
                     title={`That's ${player.name}'s Cow`}
                 >
-                    🐄
+                    🐮
                 </button>
                 <button
                     ref={marryButtonRef}
@@ -91,7 +89,7 @@ const PlayerDisplay: React.FC<IPlayer> = (player: IPlayer) => {
                     aria-label={`Marry ${player.name}'s Cows`}
                     title={`Marry ${player.name}'s Cows`}
                 >
-                    💍
+                    ⛪
                 </button>
                 <button
                     ref={killButtonRef}
@@ -100,7 +98,7 @@ const PlayerDisplay: React.FC<IPlayer> = (player: IPlayer) => {
                     aria-label={`Kill ${player.name}'s Cows`}
                     title={`Kill ${player.name}'s Cows`}
                 >
-                    🔪
+                    🪦
                 </button>
             </div>
         </div>

@@ -56,55 +56,47 @@ $secondary-color: #28a745;
 
 .NewGame {
 	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: auto;
-	min-height: 80vh;
-	align-items: center;
 	justify-content: center;
-	position: relative;
-	background-color: #fafafa;
-	padding: 1.5rem;
-	animation: fadeInUp 0.6s ease forwards;
-	max-width: 500px;
-	border-radius: 1rem;
-	margin: 0 auto;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-	transition: box-shadow 0.4s ease;
-
-	&:hover {
-		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-	}
-
+	align-items: center;
+	margin: auto;
+	width: 100%;
+	text-align: center;
 	@media (max-width: 768px) {
-		padding: 1rem;
 		height: auto;
-		min-height: 70vh;
-		width: 90%;
+		width: 100%;
 	}
 
 	// Player List & Form
 	.PlayerList {
 		width: 100%;
-		height: 80vh;
-		position: relative;
+		max-width: 600px; // Add a max-width for better appearance
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		max-height: 80vh;
+		margin: auto;
 		animation: fadeInUp 0.8s ease forwards;
-
+		background-color: #fff;
+		border-radius: 1rem;
+		padding: 1rem;
 		@media (max-width: 768px) {
 			height: auto;
-			min-height: 70vh;
 		}
 
 		.playerList {
 			width: 100%;
 			max-height: 55vh;
 			overflow-y: auto;
-			padding-right: 10px;
+			overflow-x: hidden;
 			margin-bottom: 20px;
+			margin: auto;
+
+			text-align: center;
 
 			@media (max-width: 768px) {
 				max-height: 45vh;
-				padding-right: 5px;
 			}
 
 			/* Customize scrollbar */
@@ -129,10 +121,12 @@ $secondary-color: #28a745;
 		ul {
 			list-style: none;
 			padding: 0;
-			margin: 0 0 1.5rem 0;
+			margin: 0 auto 1.5rem auto;
 			display: flex;
 			flex-direction: column;
+			align-items: center;
 			gap: 0.5rem;
+			width: 100%;
 
 			li {
 				background-color: #56a9e0;
@@ -143,6 +137,7 @@ $secondary-color: #28a745;
 				text-align: center;
 				animation: slideInRight 0.5s ease forwards;
 				transition: transform 0.3s ease, background-color 0.3s ease;
+				width: 80%;
 
 				&:hover {
 					transform: translateX(5px);
@@ -190,6 +185,8 @@ $secondary-color: #28a745;
 			padding: 1rem 0;
 			z-index: 10;
 			animation: fadeInUp 1s ease forwards;
+			width: 100%;
+			text-align: center;
 
 			@media (max-width: 768px) {
 				padding: 0.5rem 0;
@@ -200,11 +197,12 @@ $secondary-color: #28a745;
 		form {
 			display: flex;
 			flex-direction: column;
-			align-items: stretch;
-			margin: 1rem 0;
+			align-items: center;
+			margin: auto;
+			width: 90%;
 
 			@media (max-width: 768px) {
-				margin: 0.5rem 0;
+				margin: 0.5rem auto;
 			}
 
 			input {
@@ -215,6 +213,8 @@ $secondary-color: #28a745;
 				margin-bottom: 1rem;
 				transition: border-color $transition-speed ease,
 					box-shadow $transition-speed ease;
+				width: 100%;
+				text-align: center;
 
 				@media (max-width: 768px) {
 					padding: 0.6rem;
@@ -238,6 +238,7 @@ $secondary-color: #28a745;
 				cursor: pointer;
 				transition: background-color $transition-speed ease,
 					transform $transition-speed ease;
+				width: 100%;
 
 				@media (max-width: 768px) {
 					padding: 0.6rem;
@@ -269,16 +270,12 @@ $secondary-color: #28a745;
 			transition: background-color $transition-speed ease,
 				transform $transition-speed ease;
 			width: 90%;
-			margin-top: 1rem;
+			margin: 1rem auto 1rem;
 			animation: bounce 3s infinite;
-
-			position: relative;
-			bottom: 0;
-			margin-bottom: 1rem;
+			text-align: center;
 
 			@media (max-width: 768px) {
-				position: relative;
-				width: 100%;
+				width: 90%;
 				padding: 0.7rem 1rem;
 				font-size: 1rem;
 				margin-top: 0.5rem;
@@ -294,6 +291,237 @@ $secondary-color: #28a745;
 				cursor: not-allowed;
 				opacity: 0.7;
 				animation: none;
+			}
+		}
+
+		// Compact Game Rules Styling - Always visible
+		.gameRulesCompact {
+			width: 90%;
+			margin: 10px auto 15px;
+			background-color: #fff;
+			border-radius: 1rem;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			overflow: hidden;
+			border: 1px solid rgba($primary-color, 0.15);
+
+			.rulesHeader {
+				display: flex;
+				align-items: center;
+				padding: 0.7rem 1rem;
+				background: #f8f9fa;
+				border-bottom: 1px solid rgba($primary-color, 0.1);
+				gap: 8px;
+
+				.ruleIcon {
+					font-size: 1.2rem;
+				}
+
+				h2 {
+					margin: 0;
+					color: $primary-color;
+					font-size: 1.1rem;
+					font-weight: 600;
+				}
+			}
+
+			.gameRulesSummary {
+				padding: 0.8rem;
+				text-align: center;
+
+				.rulesGrid {
+					display: grid;
+					grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+					gap: 8px;
+					margin-bottom: 10px;
+					justify-content: center;
+
+					@media (max-width: 499px) {
+						grid-template-columns: minmax(180px, 250px);
+					}
+
+					@media (min-width: 500px) {
+						grid-template-columns: repeat(3, 1fr);
+					}
+				}
+
+				.ruleAction {
+					padding: 8px;
+					border-radius: 8px;
+					background-color: #f8f9fa;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					min-height: 80px;
+					position: relative;
+					overflow: hidden;
+					transition: all 0.2s ease;
+					box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+
+					&:hover {
+						transform: translateY(-2px);
+						box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+					}
+
+					&::before {
+						content: "";
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 4px;
+					}
+
+					&.cowRule::before {
+						background-color: #ff6b6b;
+					}
+
+					&.churchRule::before {
+						background-color: #4ecdc4;
+					}
+
+					&.cemeteryRule::before {
+						background-color: #845ef7;
+					}
+
+					h4 {
+						margin: 10px 0 4px;
+						font-size: 1rem;
+						font-weight: 600;
+						color: #333;
+						position: relative;
+						padding-left: 22px;
+
+						&::before {
+							position: absolute;
+							left: 0;
+							top: 50%;
+							transform: translateY(-50%);
+							font-size: 1rem;
+						}
+					}
+
+					&.cowRule h4::before {
+						content: "🐮";
+					}
+
+					&.churchRule h4::before {
+						content: "⛪";
+					}
+
+					&.cemeteryRule h4::before {
+						content: "🪦";
+					}
+
+					p {
+						margin: 0;
+						font-size: 1rem;
+						line-height: 1.3;
+						color: #666;
+						max-width: 100%;
+					}
+				}
+
+				.fullRulesLink {
+					display: inline-block;
+					background-color: $primary-color;
+					color: white;
+					padding: 5px 15px;
+					border-radius: 50px;
+					text-decoration: none;
+					font-size: 1rem;
+					font-weight: 500;
+					transition: all 0.2s ease;
+
+					&:hover {
+						background-color: darken($primary-color, 10%);
+						transform: translateY(-1px);
+					}
+				}
+			}
+		}
+	}
+
+	// Game Rules Section
+	.gameRules {
+		width: 100%;
+		max-width: 600px;
+		margin: 2rem auto;
+		animation: fadeInUp 0.8s ease forwards;
+		background-color: #fff;
+		border-radius: 1rem;
+		padding: 1.5rem;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+		h2 {
+			color: $primary-color;
+			margin-top: 0;
+			text-align: center;
+			font-size: 1.8rem;
+		}
+
+		.gameRulesSummary {
+			text-align: left;
+
+			p {
+				font-size: 1.1rem;
+				line-height: 1.5;
+				margin-bottom: 1rem;
+			}
+
+			h3 {
+				color: $secondary-color;
+				margin: 1.5rem 0 0.5rem;
+				font-size: 1.3rem;
+			}
+
+			ul {
+				list-style: disc;
+				padding-left: 1.5rem;
+				margin-bottom: 1.5rem;
+				width: auto;
+
+				li {
+					background-color: transparent;
+					padding: 0.3rem 0;
+					border-radius: 0;
+					margin-bottom: 0.2rem;
+					box-shadow: none;
+					text-align: left;
+					animation: none;
+					transition: none;
+					width: auto;
+
+					&:hover {
+						transform: none;
+						background-color: transparent;
+					}
+
+					strong {
+						color: $primary-color;
+					}
+				}
+			}
+
+			.rulebook-link {
+				display: inline-block;
+				background-color: $primary-color;
+				color: white;
+				padding: 0.6rem 1.2rem;
+				border-radius: 1rem;
+				text-decoration: none;
+				font-weight: bold;
+				margin-top: 1rem;
+				transition: background-color $transition-speed ease,
+					transform $transition-speed ease;
+
+				&:hover {
+					background-color: darken($primary-color, 10%);
+					transform: translateY(-2px);
+				}
+
+				&:active {
+					transform: translateY(1px);
+				}
 			}
 		}
 	}

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .ActiveGame {
   display: flex;
   flex-direction: column;
@@ -17,6 +18,245 @@
 }
 .ActiveGame .ScoreBoard > * {
   flex: 0 1 calc(50% - 0.5rem); /* Two items per row with gap consideration */
+}
+.ActiveGame .winner-celebration {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in;
+  overflow: hidden;
+}
+.ActiveGame .winner-celebration.active {
+  opacity: 1;
+  visibility: visible;
+}
+.ActiveGame .winner-celebration .celebration-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+.ActiveGame .winner-celebration .confetti {
+  position: absolute;
+  top: -10%;
+  width: 10px;
+  height: 25px;
+  animation: falling 5s linear infinite;
+  z-index: 1001;
+}
+.ActiveGame .winner-celebration .animated-cow {
+  position: absolute;
+  bottom: -50px;
+  font-size: 4rem;
+  animation: float 6s infinite;
+  z-index: 1002;
+}
+.ActiveGame .winner-celebration .trophy {
+  font-size: 5rem;
+  padding: 0;
+  animation: scaleIn 2s ease-in-out, glow 3s infinite;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+  z-index: 1003;
+}
+.ActiveGame .winner-celebration .winner-message {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+  animation: scaleIn 0.5s ease-out, glow 3s infinite;
+  max-width: 80%;
+  z-index: 1003;
+}
+.ActiveGame .winner-celebration .winner-message .congratulations {
+  color: #ff6b6b;
+  font-size: 3rem;
+  margin: 0 0 15px;
+  animation: colorChange 3s infinite;
+}
+@media (max-width: 768px) {
+  .ActiveGame .winner-celebration .winner-message .congratulations {
+    font-size: 2rem;
+  }
+}
+.ActiveGame .winner-celebration .winner-message .winner-name {
+  font-size: 2.5rem;
+  margin: 10px 0;
+  color: #007bff;
+}
+@media (max-width: 768px) {
+  .ActiveGame .winner-celebration .winner-message .winner-name {
+    font-size: 1.8rem;
+  }
+}
+.ActiveGame .winner-celebration .winner-message .winner-details {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+@media (max-width: 768px) {
+  .ActiveGame .winner-celebration .winner-message .winner-details {
+    font-size: 1.2rem;
+  }
+}
+.ActiveGame .winner-celebration .winner-message .winner-subtitle {
+  font-size: 1.2rem;
+  margin: 15px 0 5px;
+  color: #845ef7;
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+  .ActiveGame .winner-celebration .winner-message .winner-subtitle {
+    font-size: 1rem;
+  }
+}
+.ActiveGame .winner-celebration .winner-message .tied-winners {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+.ActiveGame .winner-celebration .winner-message .tied-winners .tied-winner {
+  font-size: 1.5rem;
+  color: #007bff;
+  margin: 0;
+}
+.ActiveGame .winner-celebration .winner-message .tied-winners .tied-winner:not(:last-child)::after {
+  content: "&";
+  margin-left: 10px;
+  color: #333;
+}
+.ActiveGame .winner-celebration .winner-message .continue-button {
+  margin-top: 25px;
+  padding: 12px 25px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: bounce 1.5s infinite;
+}
+@media (max-width: 768px) {
+  .ActiveGame .winner-celebration .winner-message .continue-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
+.ActiveGame .winner-celebration .winner-message .continue-button:hover {
+  background-color: #1e7e34;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+.ActiveGame .winner-celebration .winner-message .continue-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.ActiveGame .winner-celebration .stars-container {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  z-index: 1000;
+  animation: rotate 20s linear infinite;
+}
+.ActiveGame .winner-celebration .stars-container .star {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 2rem;
+  transform-origin: 140px 0;
+  animation: twinkle 2s infinite;
+}
+@keyframes falling {
+  0% {
+    transform: translateY(-10%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-100px) rotate(-5deg);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+@keyframes glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.7));
+  }
+  50% {
+    filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.9));
+  }
+}
+@keyframes scaleIn {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes colorChange {
+  0%, 100% {
+    color: #ff6b6b;
+  }
+  25% {
+    color: #845ef7;
+  }
+  50% {
+    color: #4ecdc4;
+  }
+  75% {
+    color: #ff922b;
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(5px) scale(0.8);
+  }
 }
 
 .PlayerDisplay {
@@ -120,10 +360,6 @@
   border: none;
   border-radius: 1rem;
   transition: all 0.2s ease-in-out;
-}
-.PlayerDisplay .buttonContainer button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(86, 169, 224, 0.6);
 }
 .PlayerDisplay .buttonContainer button:active {
   transform: scale(0.95);
@@ -351,57 +587,51 @@ nav a:hover {
 }
 .NewGame {
   display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: auto;
-  min-height: 80vh;
-  align-items: center;
   justify-content: center;
-  position: relative;
-  background-color: #fafafa;
-  padding: 1.5rem;
-  animation: fadeInUp 0.6s ease forwards;
-  max-width: 500px;
-  border-radius: 1rem;
-  margin: 0 auto;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.4s ease;
-}
-.NewGame:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  text-align: center;
 }
 @media (max-width: 768px) {
   .NewGame {
-    padding: 1rem;
     height: auto;
-    min-height: 70vh;
-    width: 90%;
+    width: 100%;
   }
 }
 .NewGame .PlayerList {
   width: 100%;
-  height: 80vh;
-  position: relative;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-height: 80vh;
+  margin: auto;
   animation: fadeInUp 0.8s ease forwards;
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 1rem;
 }
 @media (max-width: 768px) {
   .NewGame .PlayerList {
     height: auto;
-    min-height: 70vh;
   }
 }
 .NewGame .PlayerList .playerList {
   width: 100%;
   max-height: 55vh;
   overflow-y: auto;
-  padding-right: 10px;
+  overflow-x: hidden;
   margin-bottom: 20px;
+  margin: auto;
+  text-align: center;
   /* Customize scrollbar */
 }
 @media (max-width: 768px) {
   .NewGame .PlayerList .playerList {
     max-height: 45vh;
-    padding-right: 5px;
   }
 }
 .NewGame .PlayerList .playerList::-webkit-scrollbar {
@@ -421,10 +651,12 @@ nav a:hover {
 .NewGame .PlayerList ul {
   list-style: none;
   padding: 0;
-  margin: 0 0 1.5rem 0;
+  margin: 0 auto 1.5rem auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.5rem;
+  width: 100%;
 }
 .NewGame .PlayerList ul li {
   background-color: #56a9e0;
@@ -435,6 +667,7 @@ nav a:hover {
   text-align: center;
   animation: slideInRight 0.5s ease forwards;
   transition: transform 0.3s ease, background-color 0.3s ease;
+  width: 80%;
 }
 .NewGame .PlayerList ul li:hover {
   transform: translateX(5px);
@@ -476,6 +709,8 @@ nav a:hover {
   padding: 1rem 0;
   z-index: 10;
   animation: fadeInUp 1s ease forwards;
+  width: 100%;
+  text-align: center;
 }
 @media (max-width: 768px) {
   .NewGame .PlayerList .addPlayerContainer {
@@ -485,12 +720,13 @@ nav a:hover {
 .NewGame .PlayerList form {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  margin: 1rem 0;
+  align-items: center;
+  margin: auto;
+  width: 90%;
 }
 @media (max-width: 768px) {
   .NewGame .PlayerList form {
-    margin: 0.5rem 0;
+    margin: 0.5rem auto;
   }
 }
 .NewGame .PlayerList form input {
@@ -500,6 +736,8 @@ nav a:hover {
   border-radius: 1rem;
   margin-bottom: 1rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  text-align: center;
 }
 @media (max-width: 768px) {
   .NewGame .PlayerList form input {
@@ -521,6 +759,7 @@ nav a:hover {
   border-radius: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 100%;
 }
 @media (max-width: 768px) {
   .NewGame .PlayerList form button {
@@ -547,16 +786,13 @@ nav a:hover {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
   width: 90%;
-  margin-top: 1rem;
+  margin: 1rem auto 1rem;
   animation: bounce 3s infinite;
-  position: relative;
-  bottom: 0;
-  margin-bottom: 1rem;
+  text-align: center;
 }
 @media (max-width: 768px) {
   .NewGame .PlayerList .startGameButton {
-    position: relative;
-    width: 100%;
+    width: 90%;
     padding: 0.7rem 1rem;
     font-size: 1rem;
     margin-top: 0.5rem;
@@ -571,6 +807,204 @@ nav a:hover {
   cursor: not-allowed;
   opacity: 0.7;
   animation: none;
+}
+.NewGame .PlayerList .gameRulesCompact {
+  width: 90%;
+  margin: 10px auto 15px;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid rgba(0, 123, 255, 0.15);
+}
+.NewGame .PlayerList .gameRulesCompact .rulesHeader {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 1rem;
+  background: #f8f9fa;
+  border-bottom: 1px solid rgba(0, 123, 255, 0.1);
+  gap: 8px;
+}
+.NewGame .PlayerList .gameRulesCompact .rulesHeader .ruleIcon {
+  font-size: 1.2rem;
+}
+.NewGame .PlayerList .gameRulesCompact .rulesHeader h2 {
+  margin: 0;
+  color: #007bff;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary {
+  padding: 0.8rem;
+  text-align: center;
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary .rulesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+@media (max-width: 499px) {
+  .NewGame .PlayerList .gameRulesCompact .gameRulesSummary .rulesGrid {
+    grid-template-columns: minmax(180px, 250px);
+  }
+}
+@media (min-width: 500px) {
+  .NewGame .PlayerList .gameRulesCompact .gameRulesSummary .rulesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary .ruleAction {
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary .ruleAction:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary .ruleAction::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary .ruleAction.cowRule::before {
+  background-color: #ff6b6b;
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary .ruleAction.churchRule::before {
+  background-color: #4ecdc4;
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary .ruleAction.cemeteryRule::before {
+  background-color: #845ef7;
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary .ruleAction h4 {
+  margin: 10px 0 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  position: relative;
+  padding-left: 22px;
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary .ruleAction h4::before {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary .ruleAction.cowRule h4::before {
+  content: "🐮";
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary .ruleAction.churchRule h4::before {
+  content: "⛪";
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary .ruleAction.cemeteryRule h4::before {
+  content: "🪦";
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary .ruleAction p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: #666;
+  max-width: 100%;
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary .fullRulesLink {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.NewGame .PlayerList .gameRulesCompact .gameRulesSummary .fullRulesLink:hover {
+  background-color: #0062cc;
+  transform: translateY(-1px);
+}
+.NewGame .gameRules {
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  animation: fadeInUp 0.8s ease forwards;
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.NewGame .gameRules h2 {
+  color: #007bff;
+  margin-top: 0;
+  text-align: center;
+  font-size: 1.8rem;
+}
+.NewGame .gameRules .gameRulesSummary {
+  text-align: left;
+}
+.NewGame .gameRules .gameRulesSummary p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+.NewGame .gameRules .gameRulesSummary h3 {
+  color: #28a745;
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.3rem;
+}
+.NewGame .gameRules .gameRulesSummary ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: auto;
+}
+.NewGame .gameRules .gameRulesSummary ul li {
+  background-color: transparent;
+  padding: 0.3rem 0;
+  border-radius: 0;
+  margin-bottom: 0.2rem;
+  box-shadow: none;
+  text-align: left;
+  animation: none;
+  transition: none;
+  width: auto;
+}
+.NewGame .gameRules .gameRulesSummary ul li:hover {
+  transform: none;
+  background-color: transparent;
+}
+.NewGame .gameRules .gameRulesSummary ul li strong {
+  color: #007bff;
+}
+.NewGame .gameRules .gameRulesSummary .rulebook-link {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.NewGame .gameRules .gameRulesSummary .rulebook-link:hover {
+  background-color: #0062cc;
+  transform: translateY(-2px);
+}
+.NewGame .gameRules .gameRulesSummary .rulebook-link:active {
+  transform: translateY(1px);
 }
 
 .RuleBook {
@@ -602,7 +1036,7 @@ nav .title {
   animation: dance 2s ease-in-out infinite;
   position: absolute;
   display: flex;
-  top: 1rem;
+  bottom: 1rem;
   right: 1rem;
   flex-direction: column;
   align-items: center;
@@ -629,8 +1063,8 @@ nav .title {
   }
 }
 .donate-button img {
-  width: 5rem;
-  height: 5rem;
+  width: 7rem;
+  height: 7rem;
   border-radius: 50%;
   -o-object-fit: contain;
      object-fit: contain;

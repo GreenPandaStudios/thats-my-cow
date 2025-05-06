@@ -10,10 +10,10 @@ export const Home: React.FC = () => {
 
     return (
         <div className="Home">
-            <DonateButton />
             <div>
                 {isRunning ? <ActiveGame /> : <NewGame />}
             </div>
+            <DonateButton />
         </div>
     );
 };
