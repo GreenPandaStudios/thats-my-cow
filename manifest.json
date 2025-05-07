@@ -20,8 +20,7 @@
 		}
 	],
 	"start_url": ".",
- "display": "fullscreen",
-	"display": "standalone",
+	"display": "fullscreen",
 	"theme_color": "#4CAF50",
 	"background_color": "#f5f5dc",
 	"description": "A fun road trip game to spot and claim cows during your journey",
